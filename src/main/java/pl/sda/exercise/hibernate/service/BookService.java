@@ -6,57 +6,76 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import pl.sda.exercise.hibernate.model.Book;
 
 public class BookService {
-	//klasa pomocnicza
-	//nasze DAO do pobierania danych
+    //klasa pomocnicza
+    //nasze DAO do pobierania danych
 
-	private SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
-	public BookService() {
-		this.sessionFactory = new Configuration().configure().buildSessionFactory();
-		//zainicjalizowanie fabryki polaczen
-	}
+    public BookService() {
+        //zainicjalizowanie fabryki polaczen
+        //metoda Configuration ma pusty argument, poniewaz nasz plik konfiguracyjny
+        //hibernate jest madokladnie taka nazwa jak wymaga od nas hibernate
+        this.sessionFactory = new Configuration().configure().buildSessionFactory();
+    }
 
-	public List<Book> getBooks() {
-		//TODO
-		//otwieramy sesje
-		Session session = sessionFactory.openSession();
+    public List<Book> getBooks() {
+        //TODO
+        //otwieramy sesje
+        Session session = sessionFactory.openSession();
 
-		//pobieramy dane, bedzieich kilka, wiec dodajemy "list()", oraz drugi argument "Book.class"
-		//tak zeby zwrocona lista byla zawierala obiekty Book
-		//gdyby nie ten drugiargument, to by trzeba bylo rzutowac: (Book) session.createQuery("from Book", Book.class).list()
-		List<Book> list = session.createQuery("from Book", Book.class).list();
+        //pobieramy dane, bedzieich kilka, wiec dodajemy "list()", oraz drugi argument "Book.class"
+        //tak zeby zwrocona lista byla zawierala obiekty Book
+        //gdyby nie ten drugiargument, to by trzeba bylo rzutowac: (Book) session.createQuery("from Book", Book.class).list()
+        List<Book> list = session.createQuery("from Book", Book.class).list();
 
-		return list;
-	}
+        return list;
+    }
 
-	public long countBooks() {
-		//TODO
-		return 0;
-	}
+    public long countBooks() {
 
-	public List<Book> getBookById(int id) {
-		//TODO
-		return null;
-	}
+        Session session = sessionFactory.openSession();
 
-	public List<Book> getBooksByTitle(String title) {
-		//TODO
-		return new LinkedList<>();
-	}
+        //uniqueResult() - w przeciwienstwie do .list() zwroci jeden wiersz
+        Long bookCount = session.createQuery("select count(*) from Book", Long.class).uniqueResult();
+        session.close();
 
-	public void createBook(Book book) {
-		//TODO
-	}
+        return bookCount;
+    }
 
-	public void updateBook(Book book) {
-		//TODO
-	}
+    public Book getBookById(int bookId) {
 
-	public void deleteBook(Book book) {
-		//TODO
-	}
+        Session session = sessionFactory.openSession();
+
+        Query<Book> query = session.createQuery("from Book b where b.id = :id", Book.class);
+        query.setParameter("id", bookId);
+
+        Book bookToReturn = query.uniqueResult();
+
+
+        session.close();
+
+        return bookToReturn;
+    }
+
+    public List<Book> getBooksByTitle(String title) {
+        //TODO
+        return new LinkedList<>();
+    }
+
+    public void createBook(Book book) {
+        //TODO
+    }
+
+    public void updateBook(Book book) {
+        //TODO
+    }
+
+    public void deleteBook(Book book) {
+        //TODO
+    }
 
 }
