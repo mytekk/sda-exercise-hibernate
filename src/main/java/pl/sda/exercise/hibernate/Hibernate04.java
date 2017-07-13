@@ -9,8 +9,9 @@ public class Hibernate04 {
 
 	public static void main(String[] args) {
 		BookService bookService = new BookService();
-		int id = 1;
-		System.out.println("Book by id:" + bookService.getBookById(id));
+		String title = "arl";
+		System.out.println("Books by name:");
+		bookService.getBooksByTitle(title).forEach(System.out::println);
 	}
 
 }

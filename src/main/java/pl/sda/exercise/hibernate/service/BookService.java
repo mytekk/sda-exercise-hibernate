@@ -32,6 +32,8 @@ public class BookService {
         //gdyby nie ten drugiargument, to by trzeba bylo rzutowac: (Book) session.createQuery("from Book", Book.class).list()
         List<Book> list = session.createQuery("from Book", Book.class).list();
 
+        session.close();
+
         return list;
     }
 
@@ -55,15 +57,22 @@ public class BookService {
 
         Book bookToReturn = query.uniqueResult();
 
-
         session.close();
 
         return bookToReturn;
     }
 
-    public List<Book> getBooksByTitle(String title) {
-        //TODO
-        return new LinkedList<>();
+    public List<Book> getBooksByTitle(String titleToSearch) {
+
+        Session session = sessionFactory.openSession();
+
+        Query<Book> query = session.createQuery("from Book b where b.title like :title", Book.class);
+        query.setParameter("title", "%"+titleToSearch+"%"); //tutaj dodajemy procenty, bo hibernate
+                                        //nie łyknie ich w samym zapytaniu
+
+        List<Book> list = query.list();
+
+        return list;
     }
 
     public void createBook(Book book) {
