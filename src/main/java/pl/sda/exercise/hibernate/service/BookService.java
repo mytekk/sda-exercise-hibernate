@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import pl.sda.exercise.hibernate.model.Book;
@@ -85,7 +86,19 @@ public class BookService {
     }
 
     public void updateBook(Book book) {
-        //TODO
+
+        Session session = sessionFactory.openSession();
+
+        //rozpoczynamy transakcje
+        Transaction transaction = session.beginTransaction();
+
+        //zmieniam obiekt w bazie
+        session.update(book); //dostaja juz obiekt, ktory jest zmieniony wzgledem bazy danych
+
+        //commituje zmiany
+        transaction.commit();
+
+        session.close();
     }
 
     public void deleteBook(Book book) {
