@@ -13,6 +13,14 @@
 	<!-- mapowanie relacji miedzy ksiazka a autorem -->
 	<!-- jest to relacja wiele do jeden, bo wiele ksiazek moze miec tego samego autrora -->
 	<!-- lazy="false" - pobierajac ksiazki pobierze rowniez autorow ksiazki -->
+	 <!-- trzeba to zrobic, bo przez leniwe ladowanie hibernate tego domyslnie nie zrobi -->
+	<!-- i wtedy cwiczenie 8 nie zadziala, bo odwolujemy sie tam do funkcji getBooks -->
+	<!-- ktora pobierze tylko info o ksiazkach bez autorow, a w pliku 08 chcemy wypisac tez -->
+	<!-- autora, ktory przez getBook nie zostal pobrany - wlasnie przez to leniwe ladowanie -->
+	<!-- hibernate sprobuje pobrac autora dopiero wtedy kiedy jest on potrzebny, czyli przy -->
+	<!-- wyswietlaniu, a wtedy metoda bet\books ma juz zamknieta sesje i nie bedzie mogla tego pobrac -->
+	<!-- tak dziala leniwe ladowanie, ktore tutaj wylaczamy - dzieki temu hibernate pobierze -->
+	<!-- info o autorze od razu przy pobieraniu ksiazki -->
 	<many-to-one name="author" class="pl.sda.exercise.hibernate.model.Author" column="author_id"
 				 lazy="false" cascade="save-update"></many-to-one>
 </class>

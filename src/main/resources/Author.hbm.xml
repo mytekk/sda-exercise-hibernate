@@ -13,5 +13,12 @@
         <property name="lastName" type="java.lang.String">
             <column name="last_name" />
         </property>
+
+        <!-- mapowanie relacji miedzy autorem a jego ksiazkami -->
+        <!-- jest to relacja jeden do wiele, bo jeden autor moze miec wiele ksiazek -->
+        <set name="books">
+            <key column="author_id"></key>
+            <one-to-many class="pl.sda.exercise.hibernate.model.Book"/>
+        </set>
     </class>
 </hibernate-mapping>
