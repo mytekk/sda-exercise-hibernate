@@ -10,5 +10,10 @@
 	<property name="title" type="java.lang.String">
 		<column name="title" />
 	</property>
+	<!-- mapowanie relacji miedzy ksiazka a autorem -->
+	<!-- jest to relacja wiele do jeden, bo wiele ksiazek moze miec tego samego autrora -->
+	<!-- lazy="false" - pobierajac ksiazki pobierze rowniez autorow ksiazki -->
+	<many-to-one name="author" class="pl.sda.exercise.hibernate.model.Author" column="author_id"
+				 lazy="false" cascade="save-update"></many-to-one>
 </class>
 </hibernate-mapping>

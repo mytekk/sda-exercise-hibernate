@@ -7,8 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-//import pl.sda.exercise.hibernate.model.Author;
-/*
+import pl.sda.exercise.hibernate.model.Author;
+
 public class AuthorService {
 
 	public List<Author> getAuthors() {
@@ -17,4 +17,3 @@ public class AuthorService {
 	}
 
 }
-*/

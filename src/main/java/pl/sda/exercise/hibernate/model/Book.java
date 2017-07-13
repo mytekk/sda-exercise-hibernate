@@ -5,6 +5,7 @@ public class Book {
 
     private Integer id;
     private String title;
+    private Author author; //referencja do autora ksiazki
 
     public Integer getId() {
         return id;
@@ -20,6 +21,14 @@ public class Book {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     @Override
