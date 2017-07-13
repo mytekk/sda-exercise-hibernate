@@ -76,7 +76,12 @@ public class BookService {
     }
 
     public void createBook(Book book) {
-        //TODO
+
+        Session session = sessionFactory.openSession();
+
+        session.save(book); //zapisanie nowego book do bazy danych
+
+        session.close();
     }
 
     public void updateBook(Book book) {
