@@ -12,6 +12,9 @@
 	<!-- tutaj mowimy hibernetowi, ze klasy Book i Author sa encjami -->
 	<mapping resource = "Book.hbm.xml"/>
 	<mapping resource = "Author.hbm.xml"/>
+	<mapping resource = "Category.hbm.xml"/>
+
+
 </session-factory>
 
 </hibernate-configuration>

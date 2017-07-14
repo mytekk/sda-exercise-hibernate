@@ -23,5 +23,11 @@
 	<!-- info o autorze od razu przy pobieraniu ksiazki -->
 	<many-to-one name="author" class="pl.sda.exercise.hibernate.model.Author" column="author_id"
 				 lazy="false" cascade="save-update"></many-to-one>
+
+	<!-- mapowanie relacji wiele-do-wielu czyli ksiazka - kategorie -->
+	<set name="categories" table="book_category" lazy="false"> <!-- podajemy tabelkeposredniczaca -->
+		<key column="book_id"></key> <!-- kolumna z tabeli book_category, ktora jest powizana z bookiem -->
+		<many-to-many column="category_id" class="pl.sda.exercise.hibernate.model.Category"></many-to-many> <!-- kolumna z tabeli book_category, ktora jest powizana z kategoria -->
+	</set>
 </class>
 </hibernate-mapping>

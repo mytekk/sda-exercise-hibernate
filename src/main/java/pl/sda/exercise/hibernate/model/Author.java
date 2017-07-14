@@ -12,7 +12,7 @@ public class Author {
     private Integer authorId;
     private String firstName;
     private String lastName;
-    private Set<Book> books;    //referencja do ksiazek tego autora
+    private Set<Book> books;    //referencja do ksiazek tego autora (ksiazek moze byc wiele, wiec Set lub List)
 
     public Integer getAuthorId() {
         return authorId;

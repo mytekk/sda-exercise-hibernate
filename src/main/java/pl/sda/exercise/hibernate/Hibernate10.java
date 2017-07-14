@@ -8,7 +8,7 @@ import pl.sda.exercise.hibernate.service.BookService;
  * Exercise 10: categories for books
  */
 public class Hibernate10 {
-/*
+
     public static void main(String[] args) {
 
         BookService bookService = new BookService();
@@ -19,5 +19,5 @@ public class Hibernate10 {
                     .collect(Collectors.joining("; ")));
         });
     }
-*/
+
 }
