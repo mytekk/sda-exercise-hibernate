@@ -9,11 +9,14 @@
 	<property name="hibernate.connection.username">xxx</property>
 	<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
+	<!-- ustawienia, ktore wypisza wygenerowanego sql-a do konsoli -->
+	<property name="hibernate.show_sql">true</property>
+	<property name="hibernate.format_sql">true</property>
+
 	<!-- tutaj mowimy hibernetowi, ze klasy Book i Author sa encjami -->
 	<mapping resource = "Book.hbm.xml"/>
 	<mapping resource = "Author.hbm.xml"/>
 	<mapping resource = "Category.hbm.xml"/>
-
 
 </session-factory>
 
